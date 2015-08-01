@@ -2,22 +2,22 @@ __author__ = 'seyriz'
 from urllib.request import *
 from urllib.error import *
 from urllib.parse import *
-from sys import  argv
+from sys import argv
 import os
 import time
 import shutil
-import logforker
+import logcrawler
 import xmlexport
 
-class forker(object):
+class crawler(object):
 	def __init__(self):
 		self.namu = "https://namu.wiki/raw/"
 		self.document = argv[1]
 		self.document_urlencoded = quote(self.document)
 		self.headers = {'User-Agent' : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
-		self.fork()
+		self.crawl()
 
-	def fork(self):
+	def crawl(self):
 		if(not os.path.exists(self.document.replace("/", "%3A").replace(":", ""))):
 			os.mkdir(self.document.replace("/", "%3A").replace(":", ""))
 		url = self.namu + self.document_urlencoded + "?rev="
@@ -46,10 +46,10 @@ class forker(object):
 				print(e)
 				break
 		
-		logforker.getlog(self.document)
+		logcrawler.getlog(self.document)
 		xmlexport.export(self.document)
 		os.remove(self.document.replace("/", "%3A").replace(":", "") + ".log")
 		shutil.rmtree(self.document.replace("/", "%3A").replace(":", ""), ignore_errors=True)
 
 if(__name__ == "__main__"):
-	forker()
+	crawler()

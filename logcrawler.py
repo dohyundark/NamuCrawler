@@ -3,7 +3,7 @@ from urllib.request import *
 from urllib.error import *
 from urllib.parse import *
 from bs4 import BeautifulSoup
-from sys import  argv
+from sys import argv
 from os import path, mkdir
 from dateutil import parser
 from datetime import datetime
@@ -87,4 +87,4 @@ def getlog(document):
 	f.close()
 
 if (__name__ == "__main__"):
-	getlog("SCP-106")
+	getlog(argv[1])

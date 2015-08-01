@@ -1,5 +1,6 @@
 import json
 from xml.etree.ElementTree import Element, SubElement, Comment, tostring
+from sys import argv
 import os
 
 def export(title):
@@ -33,4 +34,4 @@ def export(title):
 	f.close()
 
 if (__name__ == "__main__"):
-	export("SCP-106")
+	export(argv[1])
