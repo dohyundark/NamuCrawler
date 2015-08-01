@@ -59,4 +59,7 @@ docs/_build/
 
 # PyBuilder
 target/
+
+.DS_Store
+__pycache__/
 >>>>>>> f3147a5d6f6fa3efd6e6fc3c112d4d3bbd0ca803
