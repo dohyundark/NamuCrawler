@@ -48,8 +48,8 @@ class crawler(object):
 		
 		logcrawler.getlog(self.document)
 		xmlexport.export(self.document)
-		os.remove(self.document.replace("/", "%3A").replace(":", "") + ".log")
-		shutil.rmtree(self.document.replace("/", "%3A").replace(":", ""), ignore_errors=True)
+		#os.remove(self.document.replace("/", "%3A").replace(":", "") + ".log")
+		#shutil.rmtree(self.document.replace("/", "%3A").replace(":", ""), ignore_errors=True)
 
 if(__name__ == "__main__"):
 	crawler()
