@@ -18,14 +18,16 @@ class crawler(object):
 		self.crawl()
 
 	def crawl(self):
-		if(not os.path.exists(self.document.replace("/", "%3A").replace(":", ""))):
-			os.mkdir(self.document.replace("/", "%3A").replace(":", ""))
+		if(not os.path.exists("data")):
+			os.mkdir("data")
+		if(not os.path.exists("data/" + self.document.replace("/", "%2F").replace(":", "%3A"))):
+			os.mkdir("data/" + self.document.replace("/", "%2F").replace(":", "%3A"))
 		url = self.namu + self.document_urlencoded + "?rev="
 		rev = 1
 		while(True):
 			try:
 				print("rev : ", rev)
-				if(os.path.exists(self.document+"/"+str(rev)+".namu")):
+				if(os.path.exists("data/" + self.document+"/"+str(rev)+".namu")):
 					pass
 				else:
 					req = Request(url=url+str(rev), headers=self.headers)
@@ -37,7 +39,7 @@ class crawler(object):
 							break
 					except :
 						pass
-					f = open(self.document.replace("/", "%3A").replace(":", "")+"/"+str(rev)+".namu", mode='w')
+					f = open("data/" + self.document.replace("/", "%2F").replace(":", "%3A")+"/"+str(rev)+".namu", mode='w')
 					f.write(html)
 					f.close()
 					time.sleep(3)

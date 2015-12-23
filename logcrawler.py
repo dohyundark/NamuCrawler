@@ -82,7 +82,7 @@ def getlog(document):
 		except HTTPError as e:
 			print(e)
 			break
-	f = open(document.replace("/", "%3A").replace(":", "")+".log", mode='w')
+	f = open("data/" + document.replace("/", "%2F").replace(":", "%3A")+".log", mode='w')
 	f.write(json.dumps(export, ensure_ascii=False))
 	f.close()
 

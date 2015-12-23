@@ -8,7 +8,7 @@ def export(title):
 	page = SubElement(root, "page")
 	titlenode = SubElement(page, "title")
 	titlenode.text = title
-	jsonrawdata = open(title.replace("/", "%3A").replace(":", "") + ".log").read()
+	jsonrawdata = open("data/" + title.replace("/", "%2F").replace(":", "%3A") + ".log").read()
 	data = json.loads(jsonrawdata)
 
 	for key in sorted(data.keys(), key=int):
@@ -26,10 +26,10 @@ def export(title):
 		comment = SubElement(revision, "comment")
 		comment.text = data[key]["comment"]
 
-		text = SubElement(revision, "text", attrib={"bytes": str(os.stat(title.replace("/", "%3A").replace(":", "") + "/" + key + ".namu").st_size)})
-		text.text = open(title.replace("/", "%3A").replace(":", "") + "/" + key + ".namu").read()
+		text = SubElement(revision, "text", attrib={"bytes": str(os.stat("data/" + title.replace("/", "%2F").replace(":", "%3A") + "/" + key + ".namu").st_size)})
+		text.text = open("data/" + title.replace("/", "%2F").replace(":", "%3A") + "/" + key + ".namu").read()
 
-	f = open(title.replace("/", "%3A").replace(":", "")+".xml", mode='wb')
+	f = open("data/" + title.replace("/", "%2F").replace(":", "%3A")+".xml", mode='wb')
 	f.write(tostring(root, encoding="utf-8"))
 	f.close()
 
